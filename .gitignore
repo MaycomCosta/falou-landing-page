@@ -5,3 +5,4 @@ dist/
 
 # Local editor/assistant settings
 /.claude/
+*.tsbuildinfo

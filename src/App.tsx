@@ -1,3 +1,4 @@
+import { I18nProvider, useI18n } from './i18n'
 import { Download, Footer } from './sections/Download'
 import { Faq } from './sections/Faq'
 import { Features } from './sections/Features'
@@ -10,12 +11,21 @@ import { WorksIn } from './sections/WorksIn'
 
 export function App() {
   return (
+    <I18nProvider>
+      <Page />
+    </I18nProvider>
+  )
+}
+
+function Page() {
+  const { m } = useI18n()
+  return (
     <>
       <a
         href="#try"
         className="sr-only z-50 rounded-full bg-midnight px-4 py-2 text-[13px] text-white focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
       >
-        Skip to the demo
+        {m.nav.skip}
       </a>
       <Header />
       <main>

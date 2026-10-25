@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Bubble, type BubbleState } from '../components/Bubble'
 import { Keycap } from '../components/Keycap'
 import { MacWindow } from '../components/MacWindow'
-import { site } from '../lib/site'
+import { useI18n } from '../i18n'
 import { useReducedMotion } from '../lib/useReducedMotion'
 
 /** A friend writes, you answer by voice. Cycles through the four languages and a mix. */
@@ -45,6 +45,7 @@ interface Message {
 }
 
 export function Hero() {
+  const { m } = useI18n()
   const reduced = useReducedMotion()
   const [index, setIndex] = useState(0)
   const [step, setStep] = useState<Step>(reduced ? 'pasted' : 'wait')
@@ -85,38 +86,34 @@ export function Hero() {
         <div>
           <p className="mb-6 inline-flex items-center gap-2 font-mono text-[12px] text-stone-500 uppercase tracking-[0.08em]">
             <span className="size-1.5 rounded-full bg-ember" aria-hidden />
-            Voice typing for Mac · free · offline
+            {m.hero.eyebrow}
           </p>
           <h1 className="font-semibold text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] tracking-[-0.045em]">
-            Talk.
+            {m.hero.title1}
             <br />
-            <span className="font-normal font-serif italic tracking-[-0.02em]">It types.</span>
+            <span className="font-normal font-serif italic tracking-[-0.02em]">{m.hero.title2}</span>
           </h1>
-          <p className="mt-7 max-w-[34rem] text-[18px] text-stone-600 leading-relaxed">
-            Hold a key, say what you want to write, let go. Your words show up in WhatsApp, Discord, Notes,
-            your browser — wherever the cursor is. In Portuguese, English, Spanish or French, even mixed in
-            one sentence.
-          </p>
+          <p className="mt-7 max-w-[34rem] text-[18px] text-stone-600 leading-relaxed">{m.hero.body}</p>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
             <a
               href="#download"
               className="inline-flex items-center gap-2.5 rounded-full bg-midnight px-6 py-3.5 font-medium text-[15px] text-white transition-colors hover:bg-midnight-700"
             >
               <DownloadGlyph />
-              Download for Mac
+              {m.hero.download}
             </a>
             <a
               href="#try"
               className="group inline-flex items-center gap-1.5 font-medium text-[15px] text-midnight"
             >
-              Try it on this page
+              {m.hero.tryIt}
               <span className="transition-transform group-hover:translate-y-0.5" aria-hidden>
                 ↓
               </span>
             </a>
           </div>
           <p className="mt-6 text-[13px] text-stone-500">
-            {site.requirements}. Nothing you say leaves your Mac.
+            {m.download.requirements}. {m.hero.privacyNote}
           </p>
         </div>
 
@@ -151,7 +148,7 @@ export function Hero() {
                   <span className="text-midnight">{current.you}</span>
                 ) : (
                   <span className="text-stone-400">
-                    Message
+                    {m.hero.message}
                     <span className="ml-px inline-block h-4 w-px translate-y-[3px] animate-blink bg-midnight" />
                   </span>
                 )}
@@ -168,9 +165,9 @@ export function Hero() {
               ⌥
             </Keycap>
             <span className="pr-1 font-mono text-[11px] text-stone-500 leading-tight">
-              right
+              {m.hero.keyRight}
               <br />
-              option
+              {m.hero.keyOption}
             </span>
           </div>
         </div>

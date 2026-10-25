@@ -3,23 +3,20 @@ import { Bubble, type BubbleState } from '../components/Bubble'
 import { MacWindow } from '../components/MacWindow'
 import { SectionHead } from '../components/SectionHead'
 import { Waveform } from '../components/Waveform'
+import { useI18n } from '../i18n'
 import { FILLERS, LANG_NAMES, type Lang, PHRASES, type Phrase } from '../lib/phrases'
 
 type Choice = Lang | 'mix'
 type Phase = 'idle' | 'listening' | 'transcribing' | 'done' | 'tooShort'
 
-const CHOICES: Array<{ id: Choice; label: string }> = [
-  { id: 'mix', label: 'Mixed' },
-  { id: 'pt', label: 'Português' },
-  { id: 'en', label: 'English' },
-  { id: 'es', label: 'Español' },
-  { id: 'fr', label: 'Français' },
-]
+/** The order of the language pills; "mix" is labelled per language, the rest by their own names. */
+const CHOICES: Choice[] = ['mix', 'pt', 'en', 'es', 'fr']
 
 /** Presses shorter than this are treated as accidental, like in the app. */
 const MIN_HOLD_MS = 350
 
 export function TryIt() {
+  const { m } = useI18n()
   const [choice, setChoice] = useState<Choice>('mix')
   const [phase, setPhase] = useState<Phase>('idle')
   const [elapsed, setElapsed] = useState(0)
@@ -96,54 +93,56 @@ export function TryIt() {
           : 'hidden'
   const status =
     phase === 'listening'
-      ? 'Listening… let go when you’re done.'
+      ? m.tryIt.status.listening
       : phase === 'transcribing'
-        ? 'Turning it into text…'
+        ? m.tryIt.status.working
         : phase === 'tooShort'
-          ? 'Hold it a little longer, like a walkie-talkie.'
+          ? m.tryIt.status.tooShort
           : phase === 'done'
-            ? 'Pasted where your cursor was.'
-            : 'Press and hold the button.'
+            ? m.tryIt.status.done
+            : m.tryIt.status.idle
 
   return (
     <section id="try" className="scroll-mt-16 border-line border-y bg-mist">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
         <SectionHead
-          eyebrow="Try it"
+          eyebrow={m.tryIt.eyebrow}
           title={
             <>
-              Hold, talk, <span className="font-normal font-serif italic">let go.</span>
+              {m.tryIt.title1} <span className="font-normal font-serif italic">{m.tryIt.title2}</span>
             </>
           }
-          intro="This is a simulation with sample sentences, so you can feel the rhythm. The real app listens to your own voice, on your Mac."
+          intro={m.tryIt.intro}
         />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
           {/* Controls */}
           <div className="flex flex-col">
             <fieldset>
-              <legend className="mb-3 font-medium text-[13px] text-stone-600">Language</legend>
+              <legend className="mb-3 font-medium text-[13px] text-stone-600">{m.tryIt.language}</legend>
               <div className="flex flex-wrap gap-2">
-                {CHOICES.map((c) => (
-                  <label
-                    key={c.id}
-                    className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[13.5px] transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ember has-[:focus-visible]:outline-offset-2 ${
-                      choice === c.id
-                        ? 'border-midnight bg-midnight text-white'
-                        : 'border-line bg-paper text-stone-600 hover:border-stone-300'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="demo-language"
-                      value={c.id}
-                      checked={choice === c.id}
-                      onChange={() => setChoice(c.id)}
-                      className="sr-only"
-                    />
-                    {c.label}
-                  </label>
-                ))}
+                {CHOICES.map((id) => ({ id, label: id === 'mix' ? m.tryIt.mixed : LANG_NAMES[id] })).map(
+                  (c) => (
+                    <label
+                      key={c.id}
+                      className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[13.5px] transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ember has-[:focus-visible]:outline-offset-2 ${
+                        choice === c.id
+                          ? 'border-midnight bg-midnight text-white'
+                          : 'border-line bg-paper text-stone-600 hover:border-stone-300'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="demo-language"
+                        value={c.id}
+                        checked={choice === c.id}
+                        onChange={() => setChoice(c.id)}
+                        className="sr-only"
+                      />
+                      {c.label}
+                    </label>
+                  ),
+                )}
               </div>
             </fieldset>
 
@@ -163,7 +162,7 @@ export function TryIt() {
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
               onContextMenu={(e) => e.preventDefault()}
-              aria-label="Hold to talk"
+              aria-label={m.tryIt.hold}
               className={`mt-8 flex h-40 w-full touch-none select-none flex-col [-webkit-touch-callout:none] items-center justify-center gap-3 rounded-3xl border transition-all duration-150 ${
                 listening
                   ? 'scale-[0.985] border-ember bg-midnight text-white shadow-[0_0_0_6px_var(--color-ember-50)]'
@@ -180,9 +179,9 @@ export function TryIt() {
               ) : (
                 <>
                   <MicGlyph />
-                  <span className="font-medium text-[16px]">Hold to talk</span>
+                  <span className="font-medium text-[16px]">{m.tryIt.hold}</span>
                   <span className="text-[12.5px] text-stone-500 pointer-coarse:hidden">
-                    or focus here and hold Space
+                    {m.tryIt.holdHint}
                   </span>
                 </>
               )}
@@ -195,11 +194,11 @@ export function TryIt() {
           {/* Result */}
           <div>
             <div className="relative">
-              <MacWindow title="Notes">
+              <MacWindow title={m.tryIt.notes}>
                 <div className="min-h-[180px] space-y-3 px-6 py-5 text-[15px] leading-relaxed">
                   {notes.length === 0 ? (
                     <p className="text-stone-400">
-                      Your words will land here
+                      {m.tryIt.placeholder}
                       <span className="ml-px inline-block h-4 w-px translate-y-[3px] animate-blink bg-midnight" />
                     </p>
                   ) : (
@@ -222,10 +221,10 @@ export function TryIt() {
 
             <div className="mt-10 rounded-2xl border border-line bg-paper p-5">
               <div className="flex items-baseline justify-between">
-                <h3 className="font-medium text-[13px] text-stone-600">What you said → what Falou typed</h3>
+                <h3 className="font-medium text-[13px] text-stone-600">{m.tryIt.saidTitle}</h3>
                 {result && (
                   <span className="font-mono text-[12px] text-stone-500 tabular-nums">
-                    {(result.ms / 1000).toFixed(2)} s on an M1
+                    {m.tryIt.timing((result.ms / 1000).toFixed(2))}
                   </span>
                 )}
               </div>
@@ -244,14 +243,11 @@ export function TryIt() {
                   ))}
                 </ul>
               ) : (
-                <p className="mt-3 text-[14px] text-stone-400">
-                  Filler words get dropped, punctuation and capitals added, and each language stays in its own
-                  language.
-                </p>
+                <p className="mt-3 text-[14px] text-stone-400">{m.tryIt.explain}</p>
               )}
               {result && result.parts.length > 1 && (
                 <p className="mt-4 border-line border-t pt-3 text-[12.5px] text-stone-500">
-                  {result.parts.map((p) => LANG_NAMES[p.lang]).join(' → ')}, in one go.
+                  {m.tryIt.inOneGo(result.parts.map((p) => LANG_NAMES[p.lang]).join(' → '))}
                 </p>
               )}
             </div>

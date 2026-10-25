@@ -1,4 +1,5 @@
 import { I18nProvider, useI18n } from './i18n'
+import { Buy } from './sections/Buy'
 import { Download, Footer } from './sections/Download'
 import { Faq } from './sections/Faq'
 import { Features } from './sections/Features'
@@ -35,6 +36,7 @@ function Page() {
         <TryIt />
         <Features />
         <Privacy />
+        <Buy />
         <Faq />
         <Download />
       </main>

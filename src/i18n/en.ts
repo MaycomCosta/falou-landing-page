@@ -3,13 +3,14 @@ export const en = {
   meta: {
     title: 'Falou — Talk. It types.',
     description:
-      'Hold a key, speak Portuguese, English, Spanish or French, let go — your words appear in any app on your Mac. Free, private, offline.',
+      'Hold a key, speak Portuguese, English, Spanish or French, let go — your words appear in any app on your Mac. Try it free for 7 days. Private and offline.',
   },
   nav: {
     how: 'How it works',
     try: 'Try it',
     privacy: 'Privacy',
     faq: 'FAQ',
+    buy: 'Pricing',
     cta: 'Get Falou',
     home: 'Falou, back to top',
     language: 'Language',
@@ -17,7 +18,7 @@ export const en = {
   },
   bubble: { listening: 'Listening', working: 'Turning your voice into text', done: 'Done' },
   hero: {
-    eyebrow: 'Voice typing for Mac · free · offline',
+    eyebrow: 'Voice typing for Mac · 7 days free · offline',
     title1: 'Talk.',
     title2: 'It types.',
     body: 'Hold a key, say what you want to write, let go. Your words show up in WhatsApp, Discord, Notes, your browser — wherever the cursor is. In Portuguese, English, Spanish or French, even mixed in one sentence.',
@@ -132,8 +133,8 @@ export const en = {
     title: 'Questions, answered.',
     items: [
       {
-        q: 'Is it really free?',
-        a: 'Yes. Everything on this page is free. A Pro version with extras may come later, but dictation stays free.',
+        q: 'How much does it cost?',
+        a: 'Try every feature free for 7 days. Then buy it once — no subscription, no account. You pay by Pix and your license key arrives by email.',
       },
       {
         q: 'Does it work without internet?',
@@ -164,12 +165,42 @@ export const en = {
   download: {
     title1: 'Say it.',
     title2: 'Done.',
-    body: 'Free, private, and ready in about two minutes — most of it the one-time model download.',
+    body: 'Free for 7 days, private, and ready in about two minutes — most of it the one-time model download.',
     button: (version: string) => `Download Falou ${version}`,
     soon: 'Download coming soon',
     requirements: 'Apple Silicon Mac · macOS 12 or newer',
     firstOpen:
       'First time you open it: System Settings → Privacy & Security → “Open Anyway”. Falou isn’t notarized by Apple yet.',
+  },
+  buy: {
+    eyebrow: 'Pricing',
+    title1: 'Try it free.',
+    title2: 'Buy it once.',
+    intro:
+      'Every feature works for 7 days. After that, one payment keeps Falou yours — no subscription, no account.',
+    trial: {
+      name: 'Free trial',
+      price: '7 days',
+      points: ['Everything included', 'No sign-up, no card'],
+      cta: 'Download the trial',
+    },
+    full: {
+      name: 'Falou',
+      once: 'once',
+      points: ['Yours for good, updates included', 'On all your own Macs', 'Checked offline — no account'],
+    },
+    how: 'How to buy',
+    scan: 'Scan with your bank app, or copy the Pix code:',
+    copy: 'Copy Pix code',
+    copied: 'Copied',
+    qrLabel: 'Pix QR code',
+    send: (email: string) => `Email the receipt to ${email} from the address you want the license on.`,
+    sendCta: 'Email the receipt',
+    receive:
+      'Your license key arrives by email, usually the same day. Paste it in Falou → Settings → License.',
+    pixOnly: 'Pix needs a Brazilian bank account. Outside Brazil? Email us and we’ll sort it out.',
+    soon: 'Purchases open soon. The free trial is already available.',
+    mailSubject: 'Falou — Pix receipt',
   },
   footer: {
     tagline: 'For people who’d rather say it.',

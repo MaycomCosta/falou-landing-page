@@ -17,6 +17,7 @@ export function Header() {
     { href: '#how', label: m.nav.how },
     { href: '#try', label: m.nav.try },
     { href: '#privacy', label: m.nav.privacy },
+    { href: '#buy', label: m.nav.buy },
     { href: '#faq', label: m.nav.faq },
   ]
 

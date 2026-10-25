@@ -5,13 +5,14 @@ export const fr: Messages = {
   meta: {
     title: 'Falou — Parlez. Il écrit.',
     description:
-      'Maintenez une touche, parlez en français, anglais, espagnol ou portugais, relâchez — votre texte apparaît dans n’importe quelle app de votre Mac. Gratuit, privé, hors ligne.',
+      'Maintenez une touche, parlez en français, anglais, espagnol ou portugais, relâchez — votre texte apparaît dans n’importe quelle app de votre Mac. Essai gratuit de 7 jours. Privé, hors ligne.',
   },
   nav: {
     how: 'Comment ça marche',
     try: 'Essayer',
     privacy: 'Confidentialité',
     faq: 'Questions',
+    buy: 'Prix',
     cta: 'Télécharger Falou',
     home: 'Falou, retour en haut',
     language: 'Langue',
@@ -19,7 +20,7 @@ export const fr: Messages = {
   },
   bubble: { listening: 'J’écoute', working: 'Votre voix devient du texte', done: 'C’est fait' },
   hero: {
-    eyebrow: 'Dictée vocale pour Mac · gratuit · hors ligne',
+    eyebrow: 'Dictée vocale pour Mac · 7 jours gratuits · hors ligne',
     title1: 'Parlez.',
     title2: 'Il écrit.',
     body: 'Maintenez une touche, dites ce que vous voulez écrire, relâchez. Vos mots apparaissent dans WhatsApp, Discord, Notes, votre navigateur — là où se trouve le curseur. En français, anglais, espagnol ou portugais, même mélangés dans une seule phrase.',
@@ -138,8 +139,8 @@ export const fr: Messages = {
     title: 'Vos questions, nos réponses.',
     items: [
       {
-        q: 'C’est vraiment gratuit ?',
-        a: 'Oui. Tout ce qui est sur cette page est gratuit. Une version Pro avec des extras viendra peut-être plus tard, mais la dictée restera gratuite.',
+        q: 'Combien ça coûte ?',
+        a: 'Tout est gratuit pendant 7 jours. Ensuite, on l’achète une seule fois — sans abonnement ni compte. Le paiement se fait par Pix et votre licence arrive par e-mail.',
       },
       {
         q: 'Ça marche sans internet ?',
@@ -170,12 +171,47 @@ export const fr: Messages = {
   download: {
     title1: 'Dites-le.',
     title2: 'C’est fait.',
-    body: 'Gratuit, privé et prêt en deux minutes environ — surtout le temps de télécharger le modèle vocal, une seule fois.',
+    body: 'Gratuit pendant 7 jours, privé et prêt en deux minutes environ — surtout le temps de télécharger le modèle vocal, une seule fois.',
     button: (version: string) => `Télécharger Falou ${version}`,
     soon: 'Téléchargement bientôt disponible',
     requirements: 'Mac avec puce Apple · macOS 12 ou plus récent',
     firstOpen:
       'À la première ouverture : Réglages Système → Confidentialité et sécurité → « Ouvrir quand même ». Falou n’est pas encore notarié par Apple.',
+  },
+  buy: {
+    eyebrow: 'Prix',
+    title1: 'Essayez gratuitement.',
+    title2: 'Achetez une fois.',
+    intro:
+      'Tout fonctionne pendant 7 jours. Ensuite, un seul paiement et Falou est à vous — sans abonnement ni compte.',
+    trial: {
+      name: 'Essai gratuit',
+      price: '7 jours',
+      points: ['Tout est inclus', 'Sans inscription ni carte'],
+      cta: 'Télécharger l’essai',
+    },
+    full: {
+      name: 'Falou',
+      once: 'une fois',
+      points: [
+        'À vous pour toujours, mises à jour comprises',
+        'Sur tous vos Mac',
+        'Vérifié hors ligne — sans compte',
+      ],
+    },
+    how: 'Comment acheter',
+    scan: 'Scannez avec l’app de votre banque, ou copiez le code Pix :',
+    copy: 'Copier le code Pix',
+    copied: 'Copié',
+    qrLabel: 'QR code Pix',
+    send: (email: string) => `Envoyez le reçu à ${email} depuis l’adresse où vous voulez la licence.`,
+    sendCta: 'Envoyer le reçu',
+    receive:
+      'Votre licence arrive par e-mail, en général le jour même. Collez-la dans Falou → Réglages → Licence.',
+    pixOnly:
+      'Pix demande un compte dans une banque brésilienne. Hors du Brésil ? Écrivez-nous, on trouvera une solution.',
+    soon: 'Les ventes ouvrent bientôt. L’essai gratuit est déjà disponible.',
+    mailSubject: 'Falou — reçu Pix',
   },
   footer: {
     tagline: 'Pour ceux qui préfèrent le dire.',

@@ -177,7 +177,7 @@ export const en = {
     title1: 'Try it free.',
     title2: 'Buy it once.',
     intro:
-      'Every feature works for 7 days. After that, one payment keeps Falou yours — no subscription, no account.',
+      'Every feature works for 7 days. After that, one payment of whatever you think it’s worth keeps Falou yours — no subscription, no account.',
     trial: {
       name: 'Free trial',
       price: '7 days',
@@ -186,11 +186,12 @@ export const en = {
     },
     full: {
       name: 'Falou',
-      once: 'once',
+      suggested: 'suggested',
+      pwyw: 'Pay what you want, once. No subscription.',
       points: ['Yours for good, updates included', 'On all your own Macs', 'Checked offline — no account'],
     },
     how: 'How to buy',
-    scan: 'Scan with your bank app, or copy the Pix code:',
+    scan: 'Scan with your bank app, or copy the Pix code, and type how much you want to pay:',
     copy: 'Copy Pix code',
     copied: 'Copied',
     qrLabel: 'Pix QR code',

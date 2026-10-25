@@ -178,7 +178,7 @@ export const es: Messages = {
     title1: 'Pruébalo gratis.',
     title2: 'Cómpralo una vez.',
     intro:
-      'Todo funciona durante 7 días. Después, un solo pago y Falou es tuyo — sin suscripción y sin cuenta.',
+      'Todo funciona durante 7 días. Después, un solo pago de lo que te parezca justo y Falou es tuyo — sin suscripción y sin cuenta.',
     trial: {
       name: 'Prueba gratis',
       price: '7 días',
@@ -187,7 +187,8 @@ export const es: Messages = {
     },
     full: {
       name: 'Falou',
-      once: 'una vez',
+      suggested: 'sugerido',
+      pwyw: 'Paga lo que quieras, una sola vez. Sin suscripción.',
       points: [
         'Tuyo para siempre, con actualizaciones',
         'En todos tus Macs',
@@ -195,7 +196,7 @@ export const es: Messages = {
       ],
     },
     how: 'Cómo comprar',
-    scan: 'Escanéalo con la app de tu banco, o copia el código Pix:',
+    scan: 'Escanéalo con la app de tu banco, o copia el código Pix, y escribe cuánto quieres pagar:',
     copy: 'Copiar código Pix',
     copied: 'Copiado',
     qrLabel: 'Código QR de Pix',

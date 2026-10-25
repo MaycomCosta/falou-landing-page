@@ -1,6 +1,7 @@
 /**
- * Pix "copia e cola" code (BR Code, the EMV format from Banco Central) for a fixed amount.
+ * Pix "copia e cola" code (BR Code, the EMV format from Banco Central).
  * Any Brazilian bank app can scan it as a QR code or paste it as text.
+ * Without an amount, the payer types how much they want to send.
  */
 
 function field(id: string, value: string): string {
@@ -33,8 +34,8 @@ export interface PixCharge {
   /** Receiver's name as registered at the bank. */
   name: string
   city: string
-  /** In reais, e.g. 49 or 49.9. */
-  amount: number
+  /** In reais, e.g. 49 or 49.9. Leave out to let the payer choose. */
+  amount?: number
   /** Shown on the buyer's statement, e.g. "FALOU". Letters and digits only. */
   reference?: string
 }
@@ -45,7 +46,7 @@ export function pixCode({ key, name, city, amount, reference = '***' }: PixCharg
     field('26', field('00', 'br.gov.bcb.pix') + field('01', key.trim())) +
     field('52', '0000') +
     field('53', '986') +
-    field('54', amount.toFixed(2)) +
+    (amount ? field('54', amount.toFixed(2)) : '') +
     field('58', 'BR') +
     field('59', plain(name, 25)) +
     field('60', plain(city, 15)) +

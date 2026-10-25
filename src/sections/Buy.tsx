@@ -48,11 +48,12 @@ export function Buy() {
                 <p className="font-semibold text-[40px] leading-none tracking-[-0.03em]">
                   {site.price.label}{' '}
                   <span className="font-normal font-serif text-[22px] text-white/60 italic tracking-normal">
-                    {m.buy.full.once}
+                    {m.buy.full.suggested}
                   </span>
                 </p>
               )}
             </div>
+            {canBuy() && <p className="mt-3 text-[14px] text-white/60">{m.buy.full.pwyw}</p>}
             <Points items={m.buy.full.points} dark />
             <div className="mt-8 border-white/10 border-t pt-6">
               {canBuy() ? <HowToBuy /> : <p className="text-[14.5px] text-white/70">{m.buy.soon}</p>}
@@ -86,7 +87,6 @@ function HowToBuy() {
         key: site.pix.key,
         name: site.pix.name,
         city: site.pix.city,
-        amount: site.price.amount,
         reference: 'FALOU',
       }),
     [],

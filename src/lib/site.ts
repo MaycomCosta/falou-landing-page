@@ -2,9 +2,9 @@
 export const site = {
   /**
    * Direct link to the .dmg. "latest/download" always points at the newest GitHub Release
-   * in the public falou-releases repo, so a new release needs no change here. Empty = "coming soon".
+   * of this (public) website repo, so a new release needs no change here. Empty = "coming soon".
    */
-  downloadUrl: 'https://github.com/MaycomCosta/falou-releases/releases/latest/download/Falou-arm64.dmg',
+  downloadUrl: 'https://github.com/MaycomCosta/falou-landing-page/releases/latest/download/Falou-arm64.dmg',
   version: '0.2',
   trialDays: 7,
   /**
